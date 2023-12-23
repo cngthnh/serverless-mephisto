@@ -5,6 +5,9 @@
 - An EFS volume that is used to store the Mephisto app data.
 - A Lambda function that is triggered when a new task is created.
 - A Lambda function updates the DNS record for the task so that it can be accessed through the domain name. Because this Lambda function is triggered anytime the status of a task changes, it is required to check if the stack name matches the current task.
+- A Lambda function to sync results that were submitted by workers and logs to S3, same as the Lambda above, we also need to check if the stack name matches the current task.
+
+![Serverless Mephisto Stack](/assets/images/serverless-mephisto-stack.jpg "Serverless Mephisto Stack")
 
 ## Notes:
 - All stacks will use the same log group with different log stream prefix base on stack name.

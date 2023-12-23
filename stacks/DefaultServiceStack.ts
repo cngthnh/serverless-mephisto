@@ -163,6 +163,7 @@ export function DefaultServiceStack({ stack }: StackContext) {
         entry: "./lambda/syncS3.ts",
         handler: "handler",
         environment: {
+            CLUSTER_NAME: cluster.clusterName,
             BUCKET_NAME: 'mephisto-data',
             REGION: process.env.AWS_REGION as string,
             S3_PATH: `/data-v2/${process.env.APP_NAME}`,

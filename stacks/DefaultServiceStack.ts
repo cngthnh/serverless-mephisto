@@ -152,7 +152,8 @@ export function DefaultServiceStack({ stack }: StackContext) {
             CLUSTER_NAME: cluster.clusterName,
             APP_ENV: process.env.APP_ENV as string,
             APP_NAME: process.env.APP_NAME as string,
-            DOMAIN: process.env.DOMAIN as string | 'aufederal2022.com'
+            DOMAIN: process.env.DOMAIN as string | 'aufederal2022.com',
+            HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID as string | 'Z03161229G9VKILR6LNW'
         }
     });
 

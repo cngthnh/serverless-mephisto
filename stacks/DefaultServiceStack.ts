@@ -141,7 +141,8 @@ export function DefaultServiceStack({ stack }: StackContext) {
             SUBNETS: JSON.stringify(Array.from(vpc.publicSubnets, subnet => subnet.subnetId)),
             CONTAINER_NAME: container.containerName,
             SECURITY_GROUP: securityGroup.securityGroupId
-        }
+        },
+        depsLockFilePath: './package-lock.json'
     });
 
     const updateTaskDnsLambda = new lambdaNode.NodejsFunction(stack, `${stack.stackName}-update-task-dns`, {
@@ -154,7 +155,8 @@ export function DefaultServiceStack({ stack }: StackContext) {
             APP_NAME: process.env.APP_NAME as string,
             DOMAIN: process.env.DOMAIN as string | 'aufederal2022.com',
             HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID as string | 'Z03161229G9VKILR6LNW'
-        }
+        },
+        depsLockFilePath: './package-lock.json'
     });
 
     const lambdaEfsMountedFolder = "/mnt/mpt-efs";
@@ -172,7 +174,8 @@ export function DefaultServiceStack({ stack }: StackContext) {
         },
         timeout: Duration.minutes(10),
         filesystem: lambda.FileSystem.fromEfsAccessPoint(efsAccessPoint, lambdaEfsMountedFolder),
-        vpc: vpc
+        vpc: vpc,
+        depsLockFilePath: './package-lock.json'
     });
 
     const s3FullAccessPolicyStatement = new iam.PolicyStatement({
